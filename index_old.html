@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fit Bowl Co. Launch</title>
+<link rel="icon" type="image/png" href="images/logo.png">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+  :root {
+    --bg: #FAFAF6;
+    --surface: #FFFFFF;
+    --fg: #2A3B2C;
+    --fg-muted: #6D7E6E;
+    --accent: #3B7A4A;
+    --accent-soft: #E6F0E8;
+    --urgent: #C0583A;
+    --urgent-bg: #FDF0EC;
+    --warm: #D4956B;
+    --border: #DFE4DB;
+    --hero-bg: #2A3B2C;
+    --hero-fg: #F4F7F0;
+    --hero-muted: #A8B8AA;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141A14;
+      --surface: #1E261E;
+      --fg: #E2E8E2;
+      --fg-muted: #94A496;
+      --accent: #6DB87E;
+      --accent-soft: #223228;
+      --urgent: #E07858;
+      --urgent-bg: #2E1F1A;
+      --warm: #D4A070;
+      --border: #2E3A2E;
+      --hero-bg: #0E140E;
+      --hero-fg: #E8EDE4;
+      --hero-muted: #7A8E7C;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141A14;
+    --surface: #1E261E;
+    --fg: #E2E8E2;
+    --fg-muted: #94A496;
+    --accent: #6DB87E;
+    --accent-soft: #223228;
+    --urgent: #E07858;
+    --urgent-bg: #2E1F1A;
+    --warm: #D4A070;
+    --border: #2E3A2E;
+    --hero-bg: #0E140E;
+    --hero-fg: #E8EDE4;
+    --hero-muted: #7A8E7C;
+    color-scheme: dark;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    padding: 0 16px;
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  .hero {
+    background: var(--hero-bg);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(107,177,120,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 170px;
+    margin: 0 auto 1.5rem;
+    background: #FAFAF6;
+    border-radius: 50%;
+    border: 3px solid rgba(107,177,120,0.45);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-logo img {
+    display: block;
+    width: 72%;
+    margin-top: 27px;
+    height: auto;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 0.5rem;
+    background: #FAFAF6;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    overflow: hidden;
+  }
+
+  .footer-logo img {
+    display: block;
+    width: 72%;
+    height: auto;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm);
+    background: rgba(212,149,107,0.15);
+    padding: 0.35rem 1.1rem;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--hero-fg);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    color: var(--hero-muted);
+    margin: 1.2rem auto 0;
+    max-width: 380px;
+    line-height: 1.6;
+  }
+
+  .hero-emoji {
+    font-size: 3.5rem;
+    display: block;
+    margin-top: 1.5rem;
+    line-height: 1;
+  }
+
+  .pureveg-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--hero-fg);
+    opacity: 0.85;
+  }
+
+  .pureveg-dot {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #4CAF50;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pureveg-dot::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4CAF50;
+  }
+
+  .urgency {
+    background: var(--urgent-bg);
+    border: 1.5px solid var(--urgent);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    margin-top: 1.25rem;
+    text-align: center;
+  }
+
+  .urgency-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--urgent);
+    margin: 0 0 0.4rem;
+  }
+
+  .urgency-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 0 0 0.3rem;
+  }
+
+  .urgency-desc {
+    font-size: 0.82rem;
+    color: var(--fg-muted);
+    margin: 0;
+  }
+
+  .promises {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 2rem;
+  }
+
+  .promise {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .promise:last-child { border-bottom: none; }
+
+  .promise-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .promise-text { flex: 1; min-width: 0; }
+
+  .promise-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--fg);
+    margin: 0 0 0.2rem;
+  }
+
+  .promise-desc {
+    font-size: 0.82rem;
+    color: var(--fg-muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .how-section { margin-top: 2rem; }
+
+  .how-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1rem;
+    text-align: center;
+  }
+
+  .timeline {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .tl-step {
+    flex: 1;
+    text-align: center;
+    padding: 1.25rem 0.75rem;
+    position: relative;
+  }
+
+  .tl-step + .tl-step::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .tl-day {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--accent);
+    margin: 0 0 0.3rem;
+  }
+
+  .tl-action {
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  .tl-arrow {
+    font-size: 1.2rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .cta {
+    background: var(--accent);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .cta h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.4rem;
+  }
+
+  .cta p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.75);
+    margin: 0 0 1.25rem;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #fff;
+    color: var(--accent);
+    padding: 0.75rem 2.4rem;
+    border-radius: 28px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .cta-contact {
+    margin-top: 0.9rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .cta-contact strong { color: #fff; }
+
+  .footer {
+    text-align: center;
+    padding: 1.5rem 0 3rem;
+    margin-top: 1.5rem;
+  }
+
+  .footer p {
+    font-size: 1.08rem;
+    color: var(--fg-muted);
+    margin: 0.15rem 0;
+  }
+
+  .footer .brand-sm {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--fg);
+    margin-bottom: 0.3rem;
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 2.5rem 1.25rem; }
+    .hero h1 { font-size: 1.9rem; }
+    .tl-step { padding: 1rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-logo"><img src="images/logo.png" alt="Fit Bowl Co. logo"></div>
+  <span class="hero-badge">We're Launching 🎉</span>
+  <h1>Homemade Healthy Bowls, Delivered Fresh</h1>
+  <p class="hero-sub">Made from scratch in our kitchen with real, whole ingredients. No preservatives. No shortcuts. Just honest food.</p>
+  <span class="hero-emoji">🥣</span>
+  <span class="pureveg-badge"><span class="pureveg-dot"></span> 100% Pure Veg</span>
+</div>
+
+<!-- Urgency / Limited stock -->
+<div class="urgency">
+  <p class="urgency-label">⏰ Limited Stock</p>
+  <h2 class="urgency-title">Only a Few Bowls Available Each Week</h2>
+  <p class="urgency-desc">We make everything fresh in small batches. Once sold out, you'll have to wait till next week.</p>
+</div>
+
+<!-- Promises -->
+<div class="promises">
+  <div class="promise">
+    <div class="promise-icon">🏠</div>
+    <div class="promise-text">
+      <h3 class="promise-title">100% Homemade</h3>
+      <p class="promise-desc">Every bowl is prepared by hand in our home kitchen. No factory, no machines — just real cooking with care and love.</p>
+    </div>
+  </div>
+
+  <div class="promise">
+    <div class="promise-icon">🌿</div>
+    <div class="promise-text">
+      <h3 class="promise-title">Fresh, Never Stored</h3>
+      <p class="promise-desc">We don't make ahead and refrigerate. Your bowl is prepared fresh on Saturday morning, right before delivery.</p>
+    </div>
+  </div>
+
+  <div class="promise">
+    <div class="promise-icon">📦</div>
+    <div class="promise-text">
+      <h3 class="promise-title">Limited Batch, Maximum Quality</h3>
+      <p class="promise-desc">We keep quantities small on purpose. Fewer bowls means better ingredients, better taste, and zero waste.</p>
+    </div>
+  </div>
+
+  <div class="promise">
+    <div class="promise-icon" style="background: #E8F5E9;">🟢</div>
+    <div class="promise-text">
+      <h3 class="promise-title">100% Pure Vegetarian</h3>
+      <p class="promise-desc">Every single ingredient is pure veg. No eggs, no meat, no compromise. Made in a fully vegetarian kitchen.</p>
+    </div>
+  </div>
+</div>
+
+<!-- How to order -->
+<div class="how-section">
+  <p class="how-label">How It Works</p>
+  <div class="timeline">
+    <div class="tl-step">
+      <span class="tl-arrow">📱</span>
+      <p class="tl-day">Friday Night</p>
+      <p class="tl-action">Place your order before cutoff</p>
+    </div>
+    <div class="tl-step">
+      <span class="tl-arrow">👩‍🍳</span>
+      <p class="tl-day">Saturday AM</p>
+      <p class="tl-action">We prepare your bowl fresh</p>
+    </div>
+    <div class="tl-step">
+      <span class="tl-arrow">🚗</span>
+      <p class="tl-day">Saturday</p>
+      <p class="tl-action">Delivered to your doorstep</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>Don't Miss This Week's Batch</h2>
+  <p>Orders close Friday night. Limited bowls available.</p>
+  <a class="cta-btn" href="#">Order on WhatsApp</a>
+  <!-- <p class="cta-contact">Or message us at <strong>+91 98XXX XXXXX</strong></p> -->
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <!-- <div class="footer-logo"><img src="images/logo.png" alt="Fit Bowl Co. logo"></div> -->
+  <p class="brand-sm">Fit Bowl Co.</p>
+  <p>📍 Near Sector 51, Gurugram</p>
+  <p style="margin-top: 0.4rem; opacity: 0.55; font-size: 0.68rem;">© 2026 Fit Bowl Co.</p>
+</div>
+
+</body>
+</html>
